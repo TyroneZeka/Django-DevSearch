@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'projects.apps.ProjectsConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +120,14 @@ USE_L10N = True
 USE_TZ = True
 
 
+# EMAIL SETTINGS AND SENDING WELCOME MESSAGE SETUP
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'chamakuvangufx@gmail.com'
+EMAIL_HOST_PASSWORD = 'Xavieration'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -130,6 +139,7 @@ STATICFILES_DIRS=(
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
