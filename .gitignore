@@ -26,11 +26,7 @@ var/
 .installed.cfg
 *.egg
 
-
-
 db.sqlite3
-migrations/
-media/
 
 __pycache__/
 mysite/.env

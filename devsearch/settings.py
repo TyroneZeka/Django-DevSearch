@@ -26,8 +26,7 @@ from decouple import config
 
 SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
 
-DEBUG = os.getenv('DEBUG_VAL',True)
-# DEBUG = True
+DEBUG = True
 
 # EMAIL SETUP WITH GMAIL
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
@@ -92,28 +91,16 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('DATABASE_NAME',config('DATABASE_NAME')),
-        'USER': os.getenv('DATABASE_USER',config('DATABASE_USER')),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD',config('DATABASE_PASSWORD')),
-        'HOST': os.getenv('DATABASE_HOST',config('DATABASE_HOST')),
-        'PORT': os.getenv('DATABASE_PORT',config('DATABASE_PORT')),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
 
 import dj_database_url 
-prod_db  =  dj_database_url.config(conn_max_age=600)
+prod_db  =  dj_database_url.config(default=os.getenv('DATABASE_URL',config('DATABASE_URL')),conn_max_age=600)
 DATABASES['default'].update(prod_db)
  
 
